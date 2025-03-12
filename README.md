@@ -1,2 +1,8 @@
 # socket-server-client
-Server and client working via sockets, supporting HTTP requests.
+Файл `server code.cpp` реализует многопоточный сервер, работающий по протоколу HTTP через сокеты. Сервер слушает входящие подключения на порту 2500, принимает запросы от клиентов и извлекает имя запрашиваемого файла. Если запрошен `HEAD`, сервер отправляет заголовки HTTP и сохраняет их в файл `header.txt`; в остальных случаях отвечает текстом с указанным именем файла. Каждое подключение обрабатывается в отдельном потоке, что позволяет серверу обслуживать несколько клиентов одновременно.  
+
+Файл `client code.cpp` реализует клиентское приложение, подключающееся к серверу по локальному IP `127.0.0.1` на порт 2500. Клиент запрашивает у пользователя ввод (обычное сообщение, имя файла или `HEAD`), формирует HTTP-запрос и отправляет его серверу. После получения ответа клиент выводит его содержимое в терминал. В коде предусмотрена обработка ошибок соединения, отправки и приема данных.  
+
+The `server code.cpp` file implements a multithreaded server that communicates over HTTP using sockets. The server listens for incoming connections on port 2500, processes client requests, and extracts the requested file name. If `HEAD` is requested, the server sends HTTP headers and saves them to `header.txt`; otherwise, it responds with a text message containing the requested file name. Each connection is handled in a separate thread, allowing the server to support multiple clients simultaneously.  
+
+The `client code.cpp` file implements a client application that connects to the server via local IP `127.0.0.1` on port 2500. The client prompts the user for input (a message, a filename, or `HEAD`), constructs an HTTP request, and sends it to the server. After receiving a response, the client prints it to the terminal. The code includes error handling for connection failures, data transmission, and reception.
